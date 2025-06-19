@@ -3,6 +3,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+from PIL import Image
 import json
 import base64
 from io import BytesIO
@@ -69,10 +70,10 @@ st.caption("Note : klasifikasi hanya terbatas pada beberapa jenis rempah saja se
 uploaded_file = st.file_uploader("Unggah gambar rempah", type=["jpg", "png", "jpeg"])
 
 if uploaded_file is not None:
-    img = image.load_img(uploaded_file)
-    # Konversi gambar ke base64
+    img = Image.open(uploaded_file).convert("RGB")
+    resized_img = img.resize((224, 224))
     buffered = BytesIO()
-    img.save(buffered, format="PNG")
+    resized_img.save(buffered, format="PNG")  # ukuran jauh lebih kecil
     img_b64 = base64.b64encode(buffered.getvalue()).decode()
 
     # Tampilkan gambar dengan ukuran asli
@@ -89,7 +90,7 @@ if uploaded_file is not None:
 
     # Prediksi saat tombol ditekan
     if st.button("🔍 prediksi"):
-        img_array = preprocess_image(img)
+        img_array = preprocess_image(resized_img)
         predictions = model.predict(img_array)
         predicted_class = np.argmax(predictions, axis=1)[0]
         predicted_label = labels[predicted_class]
