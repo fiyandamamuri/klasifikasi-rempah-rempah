@@ -11,7 +11,7 @@ from io import BytesIO
 model = load_model("dashboard/best_model.h5", compile=False)
 
 # Load labels dari file JSON
-with open("dashboad/labels.json", "r") as f:
+with open("dashboard/labels.json", "r") as f:
     class_indices = json.load(f)
 
 # Balik mapping {label: index} menjadi {index: label}
