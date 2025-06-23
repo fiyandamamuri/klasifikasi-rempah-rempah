@@ -30,8 +30,9 @@ with st.sidebar:
 
     st.header("ℹ️ About")
     st.markdown("""
-    Aplikasi ini merupakan sistem klasifikasi gambar rempah-rempah Indonesia menggunakan model deep learning berbasis MobileNetV2. Proyek ini bertujuan untuk membantu pelestarian budaya dan edukasi mengenai keragaman rempah Nusantara melalui teknologi. Model dilatih untuk mengenali 36 jenis rempah dengan akurasi validasi mencapai lebih dari 86%.
+    Aplikasi ini merupakan sistem klasifikasi gambar rempah-rempah Indonesia berbasis deep learning dengan arsitektur MobileNetV2. Model telah dilatih untuk mengenali 36 jenis rempah Nusantara dengan akurasi validasi lebih dari 93%. Proyek ini bertujuan untuk mendukung pelestarian budaya dan edukasi masyarakat terhadap kekayaan rempah Indonesia melalui pemanfaatan teknologi kecerdasan buatan.
     """)
+
 
     st.header("🛠️ How to Use")
     st.markdown("""

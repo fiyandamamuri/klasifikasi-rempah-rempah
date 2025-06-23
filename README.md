@@ -1,6 +1,6 @@
 # 🌿 Klasifikasi Gambar Rempah-Rempah Indonesia
 
-Proyek ini bertujuan untuk membangun model klasifikasi gambar **rempah-rempah Indonesia** menggunakan metode **Transfer Learning dengan MobileNetV2** serta arsitektur tambahan berbasis CNN (Dense, Dropout, GlobalPooling). Model ini diintegrasikan ke dalam aplikasi web menggunakan **Streamlit** agar dapat diakses dan digunakan secara interaktif.
+Proyek ini bertujuan untuk membangun model klasifikasi gambar rempah-rempah Indonesia menggunakan metode Transfer Learning dengan MobileNetV2 dan lapisan tambahan berbasis CNN (Dense, Dropout, dan Global Pooling). Model kemudian diintegrasikan ke dalam aplikasi web interaktif menggunakan Streamlit.
 
 ## 📂 Dataset
 
@@ -24,7 +24,7 @@ Model dikembangkan menggunakan Keras dan TensorFlow dengan pendekatan transfer l
   ```python
   Sequential([
       base_model,
-      GlobalMaxPooling2D(),
+      GlobalAveragePooling2D(),
       Dense(128, activation='relu'),
       Dropout(0.2),
       Dense(64, activation='relu'),
@@ -36,12 +36,14 @@ Model dikembangkan menggunakan Keras dan TensorFlow dengan pendekatan transfer l
 - Loss Function: categorical_crossentropy
 - Metrics: Accuracy, Precision, Recall
 
+> ✳️ Setelah training awal (feature extraction), dilakukan **fine-tuning** dengan membuka sebagian lapisan akhir `MobileNetV2` (mulai dari layer ke-100) dan menggunakan learning rate rendah untuk meningkatkan akurasi secara bertahap.
+
 ## 📈 Hasil Pelatihan
 
-- Akurasi Validasi Tertinggi: 86.88% pada epoch ke-28
-- F1-score per kelas berkisar antara 0.75 – 0.98
-- Performa stabil pada sebagian besar kelas meskipun terdapat kemiripan visual antar rempah
-- Disertai dengan metrik evaluasi precision, recall, dan confusion matrix
+- ✅ Akurasi Validasi Akhir: >93% setelah fine-tuning
+- ✅ F1-score per kelas berkisar antara 0.80 hingga 1.00
+- ✅ Confusion matrix menunjukkan performa yang baik dan konsisten antar kelas
+- ✅ Performa tinggi bahkan pada kelas yang memiliki kemiripan visual
 
 ## 💻 Tampilan Aplikasi
 
